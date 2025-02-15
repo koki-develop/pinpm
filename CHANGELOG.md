@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0](https://github.com/koki-develop/pinpm/compare/v0.0.4...v0.1.0) (2025-02-15)
+
+
+### Features
+
+* Add shebang banner to Bun build configuration ([37ba409](https://github.com/koki-develop/pinpm/commit/37ba4091c8fcf975854020ab8b6e1f6687b94d27))
+
 ## [0.0.4](https://github.com/koki-develop/pinpm/compare/v0.0.3...v0.0.4) (2025-02-15)
 
 
