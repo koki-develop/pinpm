@@ -1,5 +1,9 @@
 # pinpm
 
+[![NPM Version](https://img.shields.io/npm/v/pinpm)](https://www.npmjs.com/package/pinpm)
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/koki-develop/pinpm/release-please.yml)](https://github.com/koki-develop/pinpm/actions/workflows/release-please.yml)
+[![GitHub License](https://img.shields.io/github/license/koki-develop/pinpm)](./LICENSE)
+
 Pin dependency versions in `package.json`.
 
 ```console
