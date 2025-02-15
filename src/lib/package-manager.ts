@@ -1,5 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
+import PackageJson from "@npmcli/package-json";
+import { sh } from "./sh";
 
 export type PackageManager = "npm" | "pnpm" | "bun";
 
@@ -64,5 +66,51 @@ export const determinePackageManager = async (
     case "bun.lock":
     case "bun.lockb":
       return "bun";
+  }
+};
+
+export const pinDependencies = async (
+  allDependencies: Record<string, string>,
+) => {
+  // load package.json
+  const packageJson = new PackageJson();
+  await packageJson.load(process.cwd());
+
+  // pin dependencies
+  if (packageJson.content.dependencies) {
+    const dependencies: Record<string, string> = Object.fromEntries(
+      Object.keys(packageJson.content.dependencies).map((name) => [
+        name,
+        allDependencies[name],
+      ]),
+    );
+
+    packageJson.update({ dependencies });
+  }
+
+  // pin dev dependencies
+  if (packageJson.content.devDependencies) {
+    const devDependencies: Record<string, string> = Object.fromEntries(
+      Object.keys(packageJson.content.devDependencies).map((name) => [
+        name,
+        allDependencies[name],
+      ]),
+    );
+
+    packageJson.update({ devDependencies });
+  }
+
+  // save package.json
+  await packageJson.save();
+};
+
+export const runInstall = async (packageManager: PackageManager) => {
+  switch (packageManager) {
+    case "npm":
+      return sh("npm", ["install"]);
+    case "pnpm":
+      return sh("pnpm", ["install"]);
+    case "bun":
+      return sh("bun", ["install"]);
   }
 };
