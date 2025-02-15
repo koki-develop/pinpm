@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/koki-develop/pinpm/compare/v0.2.0...v0.3.0) (2025-02-15)
+
+
+### Features
+
+* Add CLI option to run package install command ([#8](https://github.com/koki-develop/pinpm/issues/8)) ([b1b0bbb](https://github.com/koki-develop/pinpm/commit/b1b0bbb7953b29ed8db3f184786833715741bd0e))
+
 ## [0.2.0](https://github.com/koki-develop/pinpm/compare/v0.1.0...v0.2.0) (2025-02-15)
 
 
