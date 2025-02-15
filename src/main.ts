@@ -8,6 +8,7 @@ import { listPnpmDependencies } from "./lib/pnpm";
 
 export type Options = {
   lockfile?: string;
+  install?: boolean;
 };
 
 export const main = async (options: Options) => {

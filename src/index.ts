@@ -9,6 +9,7 @@ program
   .version(version)
   .description(description)
   .option("-l, --lockfile <lockfile>", "lockfile to use")
+  .option("-i, --install", "run install command")
   .parse(process.argv);
 
 main(program.opts<Options>()).catch((error) => {
