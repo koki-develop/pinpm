@@ -1,4 +1,4 @@
-import { readWantedLockfile, type ProjectId } from "@pnpm/lockfile-file";
+import { type ProjectId, readWantedLockfile } from "@pnpm/lockfile-file";
 
 export const listPnpmDependencies = async (): Promise<
   Record<string, string>

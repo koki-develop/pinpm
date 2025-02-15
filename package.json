@@ -11,9 +11,7 @@
   "bin": {
     "pinpm": "dist/index.js"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "type": "module",
   "module": "index.ts",
   "scripts": {
