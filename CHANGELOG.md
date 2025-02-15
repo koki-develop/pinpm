@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3](https://github.com/koki-develop/pinpm/compare/v0.0.2...v0.0.3) (2025-02-15)
+
+
+### Bug Fixes
+
+* release ([21643dd](https://github.com/koki-develop/pinpm/commit/21643ddd44baadbf24e39a59bfff68f64bb19d4f))
+
 ## [0.0.2](https://github.com/koki-develop/pinpm/compare/v0.0.1...v0.0.2) (2025-02-15)
 
 
