@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.2](https://github.com/koki-develop/pinpm/compare/v0.3.1...v0.3.2) (2025-02-15)
+
+
+### Bug Fixes
+
+* Show spinner ([#11](https://github.com/koki-develop/pinpm/issues/11)) ([326ec39](https://github.com/koki-develop/pinpm/commit/326ec3952bbc6f7ea41cf33ffd1870189672ea13))
+* Use process.stderr for spinner output ([a2d227e](https://github.com/koki-develop/pinpm/commit/a2d227e304e5b1857335e059d613a71b21ac17ac))
+
 ## [0.3.1](https://github.com/koki-develop/pinpm/compare/v0.3.0...v0.3.1) (2025-02-15)
 
 
