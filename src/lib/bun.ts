@@ -14,7 +14,9 @@ export const listBunDependencies = async (): Promise<
 
   const dependencies = lines.reduce<Record<string, string>>((acc, line) => {
     const [, dependency] = line.split("── ");
-    const [name, version] = dependency.trim().split("@");
+    const name_version = dependency.trim().split("@");
+    const name = name_version.slice(0, -1).join("@");
+    const version = name_version.slice(-1)[0];
     acc[name] = version;
     return acc;
   }, {});
