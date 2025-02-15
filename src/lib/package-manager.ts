@@ -5,6 +5,7 @@ import { sh } from "./sh";
 import { withSpinner } from "./spinner";
 
 export type PackageManager = "npm" | "pnpm" | "bun";
+export type Lockfile = (typeof lockFiles)[number];
 
 const lockFiles = [
   // npm
@@ -22,73 +23,24 @@ export const detectPackageManager = async (
   packageManager: PackageManager;
   lockfile: string;
 }> => {
-  if (lockfile) {
-    const absolutePath = path.resolve(process.cwd(), lockfile);
-    if (!fs.existsSync(absolutePath)) {
-      throw new Error(`${absolutePath} not found`);
-    }
-
-    const dirname = path.dirname(absolutePath);
-    if (dirname !== process.cwd()) {
-      throw new Error(`${lockfile} does not exist in the current directory`);
-    }
-
-    const filename = path.basename(absolutePath);
-    switch (filename) {
+  const foundLockfile = _findLockfile(lockfile);
+  const packageManager = (() => {
+    switch (foundLockfile) {
       case "package-lock.json":
-        return {
-          packageManager: "npm",
-          lockfile: filename,
-        };
+        return "npm";
       case "pnpm-lock.yaml":
-        return {
-          packageManager: "pnpm",
-          lockfile: filename,
-        };
+        return "pnpm";
       case "bun.lock":
+        return "bun";
       case "bun.lockb":
-        return {
-          packageManager: "bun",
-          lockfile: filename,
-        };
-      default:
-        throw new Error(
-          `Unsupported lockfile: ${filename}\npinpm currently only supports: ${lockFiles.join(", ")}`,
-        );
+        return "bun";
     }
-  }
+  })();
 
-  const foundLockfiles = lockFiles.filter((lockfile) => {
-    return fs.existsSync(path.resolve(process.cwd(), lockfile));
-  });
-  if (foundLockfiles.length === 0) {
-    throw new Error(
-      `No supported lockfile found\npinpm currently only supports: ${lockFiles.join(", ")}`,
-    );
-  }
-  if (foundLockfiles.length > 1) {
-    throw new Error(`Multiple lockfiles found: ${foundLockfiles.join(", ")}`);
-  }
-
-  const foundLockfile = foundLockfiles[0];
-  switch (foundLockfile) {
-    case "package-lock.json":
-      return {
-        packageManager: "npm",
-        lockfile: foundLockfile,
-      };
-    case "pnpm-lock.yaml":
-      return {
-        packageManager: "pnpm",
-        lockfile: foundLockfile,
-      };
-    case "bun.lock":
-    case "bun.lockb":
-      return {
-        packageManager: "bun",
-        lockfile: foundLockfile,
-      };
-  }
+  return {
+    packageManager,
+    lockfile: foundLockfile,
+  };
 };
 
 export const pinDependencies = async (
@@ -153,4 +105,45 @@ export const runInstall = async (packageManager: PackageManager) => {
       );
       break;
   }
+};
+
+const _findLockfile = (lockfile?: string): Lockfile => {
+  if (lockfile) {
+    const absolutePath = path.resolve(process.cwd(), lockfile);
+    if (!fs.existsSync(absolutePath)) {
+      throw new Error(`${absolutePath} not found`);
+    }
+
+    const dirname = path.dirname(absolutePath);
+    if (dirname !== process.cwd()) {
+      throw new Error(`${lockfile} does not exist in the current directory`);
+    }
+
+    const filename = path.basename(absolutePath);
+    switch (filename) {
+      case "package-lock.json":
+      case "pnpm-lock.yaml":
+      case "bun.lock":
+      case "bun.lockb":
+        return filename;
+      default:
+        throw new Error(
+          `Unsupported lockfile: ${filename}\npinpm currently only supports: ${lockFiles.join(", ")}`,
+        );
+    }
+  }
+
+  const foundLockfiles = lockFiles.filter((lockfile) => {
+    return fs.existsSync(path.resolve(process.cwd(), lockfile));
+  });
+  if (foundLockfiles.length === 0) {
+    throw new Error(
+      `No supported lockfile found\npinpm currently only supports: ${lockFiles.join(", ")}`,
+    );
+  }
+  if (foundLockfiles.length > 1) {
+    throw new Error(`Multiple lockfiles found: ${foundLockfiles.join(", ")}`);
+  }
+
+  return foundLockfiles[0];
 };
