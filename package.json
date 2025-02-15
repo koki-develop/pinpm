@@ -1,10 +1,10 @@
 {
   "name": "pinpm",
+  "type": "module",
   "module": "index.ts",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/bun": "latest",
     "typescript": "^5.7.3"
-  },
-  "type": "module"
+  }
 }
