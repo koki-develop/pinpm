@@ -1,5 +1,6 @@
 {
   "name": "pinpm",
+  "description": "Pin dependency versions in package.json",
   "version": "0.0.0",
   "author": "koki-develop <kou.pg.0131@gmail.com>",
   "homepage": "https://github.com/koki-develop/pinpm",

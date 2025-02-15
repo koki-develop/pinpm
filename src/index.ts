@@ -1,12 +1,13 @@
 import { Command } from "commander";
-import { version } from "../package.json";
+import { name, version, description } from "../package.json";
 import { type Options, main } from "./main";
 
 const program = new Command();
 
 program
-  .name("pinpm")
+  .name(name)
   .version(version)
+  .description(description)
   .option("-l, --lockfile <lockfile>", "lockfile to use")
   .parse(process.argv);
 
