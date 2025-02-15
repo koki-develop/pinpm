@@ -32,7 +32,9 @@ export const determinePackageManager = async (
       case "pnpm-lock.yaml":
         return "pnpm";
       default:
-        throw new Error(`Unsupported lockfile: ${filename}`);
+        throw new Error(
+          `Unsupported lockfile: ${filename}\npinpm currently only supports: ${lockFiles.join(", ")}`,
+        );
     }
   }
 
@@ -40,7 +42,9 @@ export const determinePackageManager = async (
     return fs.existsSync(path.resolve(process.cwd(), lockfile));
   });
   if (foundLockfiles.length === 0) {
-    throw new Error("No lockfile found");
+    throw new Error(
+      `No supported lockfile found\npinpm currently only supports: ${lockFiles.join(", ")}`,
+    );
   }
   if (foundLockfiles.length > 1) {
     throw new Error(`Multiple lockfiles found: ${foundLockfiles.join(", ")}`);
