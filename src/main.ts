@@ -1,10 +1,10 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { listBunDependencies } from "./lib/bun";
 import { listNpmDependencies } from "./lib/npm";
 import { determinePackageManager } from "./lib/package-manager";
 import { pinDependencies } from "./lib/pin";
 import { listPnpmDependencies } from "./lib/pnpm";
-import { listBunDependencies } from "./lib/bun";
 
 export type Options = {
   lockfile?: string;
