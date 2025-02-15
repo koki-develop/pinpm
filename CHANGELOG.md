@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/koki-develop/pinpm/compare/v0.1.0...v0.2.0) (2025-02-15)
+
+
+### Features
+
+* Add Bun package manager support ([#6](https://github.com/koki-develop/pinpm/issues/6)) ([9afeaab](https://github.com/koki-develop/pinpm/commit/9afeaabeb42efa51ca8a1db70f6e739818eeedf3))
+
+
+### Bug Fixes
+
+* Improve Bun dependency parsing for scoped and complex package names ([0e3fef0](https://github.com/koki-develop/pinpm/commit/0e3fef016c06509c080811e0cd1608c2f47524be))
+
 ## [0.1.0](https://github.com/koki-develop/pinpm/compare/v0.0.4...v0.1.0) (2025-02-15)
 
 
