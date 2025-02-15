@@ -4,6 +4,7 @@ import { listNpmDependencies } from "./lib/npm";
 import { determinePackageManager } from "./lib/package-manager";
 import { pinDependencies } from "./lib/pin";
 import { listPnpmDependencies } from "./lib/pnpm";
+import { listBunDependencies } from "./lib/bun";
 
 export type Options = {
   lockfile?: string;
@@ -26,6 +27,8 @@ export const main = async (options: Options) => {
         return listNpmDependencies();
       case "pnpm":
         return listPnpmDependencies();
+      case "bun":
+        return listBunDependencies();
     }
   })();
 
