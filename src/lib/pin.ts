@@ -1,4 +1,3 @@
-import * as path from "node:path";
 import PackageJson from "@npmcli/package-json";
 
 export const pinDependencies = async (
