@@ -16,7 +16,7 @@
     "dist"
   ],
   "type": "module",
-  "module": "index.ts",
+  "module": "src/index.ts",
   "scripts": {
     "fmt": "biome check --write .",
     "prebuild": "rm -rf dist",
