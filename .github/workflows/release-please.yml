@@ -28,6 +28,7 @@ jobs:
       - uses: ./.github/actions/setup
         if: ${{ steps.release.outputs.release_created }}
       - name: Create .npmrc
+        if: ${{ steps.release.outputs.release_created }}
         run: |
           (
             # shellcheck disable=SC2016
