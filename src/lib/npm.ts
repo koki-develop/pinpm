@@ -1,6 +1,8 @@
 import { sh } from "./sh";
 
-export const npmList = async (): Promise<Record<string, string>> => {
+export const listNpmDependencies = async (): Promise<
+  Record<string, string>
+> => {
   const stdout = await sh("npm", [
     "list",
     "--package-lock-only",

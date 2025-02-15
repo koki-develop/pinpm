@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { npmList } from "./lib/npm";
+import { listNpmDependencies } from "./lib/npm";
 import { determinePackageManager } from "./lib/package-manager";
 import { pinDependencies } from "./lib/pin";
 
@@ -21,7 +21,7 @@ export const main = async (options: Options) => {
   const dependencies = await (async () => {
     switch (packageManager) {
       case "npm":
-        return npmList();
+        return listNpmDependencies();
     }
   })();
 
