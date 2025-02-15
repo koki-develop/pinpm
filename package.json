@@ -6,6 +6,7 @@
     "fmt": "biome check --write ."
   },
   "dependencies": {
+    "@npmcli/package-json": "^6.1.1",
     "commander": "^13.1.0"
   },
   "devDependencies": {
