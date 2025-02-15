@@ -31,7 +31,6 @@ export const detectPackageManager = async (
       case "pnpm-lock.yaml":
         return "pnpm";
       case "bun.lock":
-        return "bun";
       case "bun.lockb":
         return "bun";
     }
@@ -111,7 +110,7 @@ const _findLockfile = (lockfile?: string): Lockfile => {
   if (lockfile) {
     const absolutePath = path.resolve(process.cwd(), lockfile);
     if (!fs.existsSync(absolutePath)) {
-      throw new Error(`${absolutePath} not found`);
+      throw new Error(`${lockfile} not found`);
     }
 
     const dirname = path.dirname(absolutePath);
