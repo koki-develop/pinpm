@@ -1,6 +1,6 @@
 # pinpm
 
-Pin dependency versions in package.json
+Pin dependency versions in `package.json`.
 
 ```console
 $ pinpm
