@@ -1,6 +1,7 @@
-import PackageJson from "@npmcli/package-json";
 import * as fs from "node:fs";
 import * as path from "node:path";
+import PackageJson from "@npmcli/package-json";
+import { sh } from "./sh";
 
 export type PackageManager = "npm" | "pnpm" | "bun";
 
@@ -101,4 +102,16 @@ export const pinDependencies = async (
 
   // save package.json
   await packageJson.save();
+};
+
+export const runInstall = async () => {
+  const packageManager = await determinePackageManager();
+  switch (packageManager) {
+    case "npm":
+      return sh("npm", ["install"]);
+    case "pnpm":
+      return sh("pnpm", ["install"]);
+    case "bun":
+      return sh("bun", ["install"]);
+  }
 };

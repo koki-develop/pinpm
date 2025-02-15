@@ -5,6 +5,7 @@ import { listNpmDependencies } from "./lib/npm";
 import {
   determinePackageManager,
   pinDependencies,
+  runInstall,
 } from "./lib/package-manager";
 import { listPnpmDependencies } from "./lib/pnpm";
 
@@ -37,4 +38,9 @@ export const main = async (options: Options) => {
 
   // pin dependencies
   await pinDependencies(allDependencies);
+
+  // run install command
+  if (options.install) {
+    await runInstall();
+  }
 };
