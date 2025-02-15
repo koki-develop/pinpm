@@ -53,6 +53,7 @@ Supported package managers:
 
 - npm (`package-lock.json`)
 - pnpm (`pnpm-lock.yaml`)
+- bun (`bun.lock`, `bun.lockb`)
 
 ## LICENSE
 
