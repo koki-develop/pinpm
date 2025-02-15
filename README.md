@@ -51,9 +51,9 @@ Options:
 
 Supported package managers:
 
-- npm (`package-lock.json`)
-- pnpm (`pnpm-lock.yaml`)
-- bun (`bun.lock`, `bun.lockb`)
+- [npm](https://docs.npmjs.com/cli/commands/npm) (`package-lock.json`)
+- [pnpm](https://pnpm.io) (`pnpm-lock.yaml`)
+- [bun](https://bun.sh/package-manager) (`bun.lock`, `bun.lockb`)
 
 ## LICENSE
 
