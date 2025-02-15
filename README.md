@@ -45,6 +45,7 @@ Pin dependency versions in package.json
 Options:
   -V, --version              output the version number
   -l, --lockfile <lockfile>  lockfile to use
+  -i, --install              run install command
   -h, --help                 display help for command
 ```
 
