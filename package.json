@@ -18,7 +18,9 @@
   "module": "index.ts",
   "scripts": {
     "fmt": "biome check --write .",
-    "build": "bun run tasks/build.ts"
+    "prebuild": "rm -rf dist",
+    "build": "bun run tasks/build.ts",
+    "prepublishOnly": "bun run build"
   },
   "dependencies": {
     "@npmcli/package-json": "^6.1.1",
