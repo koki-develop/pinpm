@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@npmcli/package-json": "^6.1.1",
+    "@pnpm/lockfile-file": "^9.1.3",
     "commander": "^13.1.0"
   },
   "devDependencies": {
