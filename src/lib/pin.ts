@@ -10,14 +10,11 @@ export const pinDependencies = async (
 
   // pin dependencies
   if (packageJson.content.dependencies) {
-    const dependencies: Record<string, string> = Object.keys(
-      packageJson.content.dependencies,
-    ).reduce(
-      (acc, name) => {
-        acc[name] = allDependencies[name];
-        return acc;
-      },
-      {} as Record<string, string>,
+    const dependencies: Record<string, string> = Object.fromEntries(
+      Object.keys(packageJson.content.dependencies).map((name) => [
+        name,
+        allDependencies[name],
+      ]),
     );
 
     packageJson.update({ dependencies });
@@ -25,14 +22,11 @@ export const pinDependencies = async (
 
   // pin dev dependencies
   if (packageJson.content.devDependencies) {
-    const devDependencies: Record<string, string> = Object.keys(
-      packageJson.content.devDependencies,
-    ).reduce(
-      (acc, name) => {
-        acc[name] = allDependencies[name];
-        return acc;
-      },
-      {} as Record<string, string>,
+    const devDependencies: Record<string, string> = Object.fromEntries(
+      Object.keys(packageJson.content.devDependencies).map((name) => [
+        name,
+        allDependencies[name],
+      ]),
     );
 
     packageJson.update({ devDependencies });

@@ -12,11 +12,10 @@ export const listNpmDependencies = async (): Promise<
 
   const parsed = JSON.parse(stdout);
 
-  return Object.entries(parsed.dependencies).reduce(
-    (acc, [name, info]) => {
-      acc[name] = (info as { version: string }).version;
-      return acc;
-    },
-    {} as Record<string, string>,
+  return Object.fromEntries(
+    Object.entries(parsed.dependencies).map(([name, info]) => [
+      name,
+      (info as { version: string }).version,
+    ]),
   );
 };
