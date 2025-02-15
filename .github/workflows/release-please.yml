@@ -27,6 +27,13 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
       - uses: ./.github/actions/setup
         if: ${{ steps.release.outputs.release_created }}
+      - name: Create .npmrc
+        run: |
+          (
+            # shellcheck disable=SC2016
+            echo '//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}'
+            echo 'registry=https://registry.npmjs.org'
+          ) > .npmrc
       - run: npm publish
         if: ${{ steps.release.outputs.release_created }}
         env:
