@@ -104,8 +104,7 @@ export const pinDependencies = async (
   await packageJson.save();
 };
 
-export const runInstall = async () => {
-  const packageManager = await determinePackageManager();
+export const runInstall = async (packageManager: PackageManager) => {
   switch (packageManager) {
     case "npm":
       return sh("npm", ["install"]);

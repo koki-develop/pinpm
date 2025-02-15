@@ -41,6 +41,6 @@ export const main = async (options: Options) => {
 
   // run install command
   if (options.install) {
-    await runInstall();
+    await runInstall(packageManager);
   }
 };
