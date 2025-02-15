@@ -1,5 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
+import { listBunDependencies } from "./lib/bun";
 import { listNpmDependencies } from "./lib/npm";
 import { determinePackageManager } from "./lib/package-manager";
 import { pinDependencies } from "./lib/pin";
@@ -26,6 +27,8 @@ export const main = async (options: Options) => {
         return listNpmDependencies();
       case "pnpm":
         return listPnpmDependencies();
+      case "bun":
+        return listBunDependencies();
     }
   })();
 

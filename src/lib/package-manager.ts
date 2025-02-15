@@ -1,14 +1,16 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-export type PackageManager = "npm" | "pnpm";
+export type PackageManager = "npm" | "pnpm" | "bun";
 
 const lockFiles = [
   // npm
   "package-lock.json",
   // pnpm
   "pnpm-lock.yaml",
-  // TODO: bun
+  // bun
+  "bun.lock",
+  "bun.lockb",
 ] as const;
 
 export const determinePackageManager = async (
@@ -31,6 +33,9 @@ export const determinePackageManager = async (
         return "npm";
       case "pnpm-lock.yaml":
         return "pnpm";
+      case "bun.lock":
+      case "bun.lockb":
+        return "bun";
       default:
         throw new Error(
           `Unsupported lockfile: ${filename}\npinpm currently only supports: ${lockFiles.join(", ")}`,
@@ -56,5 +61,8 @@ export const determinePackageManager = async (
       return "npm";
     case "pnpm-lock.yaml":
       return "pnpm";
+    case "bun.lock":
+    case "bun.lockb":
+      return "bun";
   }
 };
