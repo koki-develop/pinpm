@@ -5,7 +5,9 @@ const program = new Command();
 
 // TODO: version
 
-program.parse(process.argv);
+program
+  .option("-l, --lockfile <lockfile>", "lockfile to use")
+  .parse(process.argv);
 
 main(program.opts<Options>()).catch((error) => {
   console.error(`${error}`);

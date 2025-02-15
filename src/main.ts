@@ -5,18 +5,19 @@ import { determinePackageManager } from "./lib/package-manager";
 import { pinDependencies } from "./lib/pin";
 import { listPnpmDependencies } from "./lib/pnpm";
 
-// biome-ignore lint/complexity/noBannedTypes:
-export type Options = {};
+export type Options = {
+  lockfile?: string;
+};
 
 export const main = async (options: Options) => {
   // read package.json
-  const packageJsonPath = path.join(process.cwd(), "package.json");
+  const packageJsonPath = path.resolve(process.cwd(), "package.json");
   if (!fs.existsSync(packageJsonPath)) {
     throw new Error("package.json not found");
   }
 
   // determine package manager
-  const packageManager = await determinePackageManager();
+  const packageManager = await determinePackageManager(options.lockfile);
 
   // get dependencies
   const allDependencies = await (async () => {
