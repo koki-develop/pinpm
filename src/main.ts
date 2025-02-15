@@ -3,6 +3,7 @@ import * as path from "node:path";
 import { listNpmDependencies } from "./lib/npm";
 import { determinePackageManager } from "./lib/package-manager";
 import { pinDependencies } from "./lib/pin";
+import { listPnpmDependencies } from "./lib/pnpm";
 
 // biome-ignore lint/complexity/noBannedTypes:
 export type Options = {};
@@ -18,13 +19,15 @@ export const main = async (options: Options) => {
   const packageManager = await determinePackageManager();
 
   // get dependencies
-  const dependencies = await (async () => {
+  const allDependencies = await (async () => {
     switch (packageManager) {
       case "npm":
         return listNpmDependencies();
+      case "pnpm":
+        return listPnpmDependencies();
     }
   })();
 
   // pin dependencies
-  await pinDependencies(dependencies);
+  await pinDependencies(allDependencies);
 };

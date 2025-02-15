@@ -1,13 +1,13 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-export type PackageManager = "npm";
+export type PackageManager = "npm" | "pnpm";
 
-type LockFile = (typeof lockFiles)[number];
 const lockFiles = [
   // npm
   "package-lock.json",
-  // TODO: pnpm
+  // pnpm
+  "pnpm-lock.yaml",
   // TODO: bun
 ] as const;
 
@@ -26,5 +26,7 @@ export const determinePackageManager = async (): Promise<PackageManager> => {
   switch (foundLockfile) {
     case "package-lock.json":
       return "npm";
+    case "pnpm-lock.yaml":
+      return "pnpm";
   }
 };
