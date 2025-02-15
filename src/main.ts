@@ -2,8 +2,10 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { listBunDependencies } from "./lib/bun";
 import { listNpmDependencies } from "./lib/npm";
-import { determinePackageManager } from "./lib/package-manager";
-import { pinDependencies } from "./lib/pin";
+import {
+  determinePackageManager,
+  pinDependencies,
+} from "./lib/package-manager";
 import { listPnpmDependencies } from "./lib/pnpm";
 
 export type Options = {
