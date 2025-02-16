@@ -6,27 +6,7 @@
 
 Pin dependency versions in `package.json`.
 
-```console
-$ pinpm
-```
-
-```diff
- // package.json
- {
-   "dependencies": {
--    "@aws-sdk/core": "^3.0.0",
--    "aws-cdk": "~2"
-+    "@aws-sdk/core": "3.749.0",
-+    "aws-cdk": "2.178.2"
-   },
-   "devDependencies": {
--    "eslint": ">=9.0.0",
--    "prettier": "latest"
-+    "eslint": "9.20.1",
-+    "prettier": "3.5.1"
-   }
- }
-```
+![demo](./assets/demo.gif)
 
 ## Installation
 

@@ -1,6 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { listBunDependencies } from "./lib/bun";
+import { Color } from "./lib/color";
 import { listNpmDependencies } from "./lib/npm";
 import {
   detectPackageManager,
@@ -55,9 +56,22 @@ export const main = async (options: Options) => {
   );
 
   // pin dependencies
-  await withSpinner({ start: "Pinning dependencies" }, async () => {
-    await pinDependencies(allDependencies);
-  });
+  await withSpinner(
+    {
+      start: "Pinning dependencies",
+      result: (pinnedDependencies) => {
+        if (pinnedDependencies.length === 0) {
+          return "All dependencies are already pinned";
+        }
+
+        return pinnedDependencies.map(
+          (dependency) =>
+            `${dependency.name} (${new Color(dependency.prev).red()} -> ${new Color(dependency.pinned).green()})`,
+        );
+      },
+    },
+    async () => pinDependencies(allDependencies),
+  );
 
   // run install command
   if (options.install) {
