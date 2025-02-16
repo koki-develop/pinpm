@@ -9,6 +9,7 @@ import {
 } from "./lib/package-manager";
 import { listPnpmDependencies } from "./lib/pnpm";
 import { withSpinner } from "./lib/spinner";
+import { Color } from "./lib/color";
 
 export type Options = {
   lockfile?: string;
@@ -55,9 +56,22 @@ export const main = async (options: Options) => {
   );
 
   // pin dependencies
-  await withSpinner({ start: "Pinning dependencies" }, async () => {
-    await pinDependencies(allDependencies);
-  });
+  await withSpinner(
+    {
+      start: "Pinning dependencies",
+      result: (pinnedDependencies) => {
+        if (pinnedDependencies.length === 0) {
+          return "All dependencies are already pinned";
+        }
+
+        return pinnedDependencies.map(
+          (dependency) =>
+            `${dependency.name} (${new Color(dependency.prev).red()} -> ${new Color(dependency.pinned).green()})`,
+        );
+      },
+    },
+    async () => pinDependencies(allDependencies),
+  );
 
   // run install command
   if (options.install) {

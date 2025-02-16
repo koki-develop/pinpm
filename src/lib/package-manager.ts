@@ -42,20 +42,36 @@ export const detectPackageManager = async (
   };
 };
 
+export type PinnedDependency = {
+  name: string;
+  prev: string;
+  pinned: string;
+};
+
 export const pinDependencies = async (
   allDependencies: Record<string, string>,
-) => {
+): Promise<PinnedDependency[]> => {
+  const pinnedDependencies: PinnedDependency[] = [];
+
   // load package.json
   const packageJson = new PackageJson();
   await packageJson.load(process.cwd());
 
   // pin dependencies
   if (packageJson.content.dependencies) {
-    const dependencies: Record<string, string> = Object.fromEntries(
-      Object.keys(packageJson.content.dependencies).map((name) => [
-        name,
-        allDependencies[name],
-      ]),
+    const dependencies: Record<string, string> = Object.entries(
+      packageJson.content.dependencies,
+    ).reduce(
+      (acc, [name, prev]) => {
+        const pinned = allDependencies[name];
+        if (prev !== pinned) {
+          pinnedDependencies.push({ name, prev, pinned });
+        }
+
+        acc[name] = pinned;
+        return acc;
+      },
+      {} as Record<string, string>,
     );
 
     packageJson.update({ dependencies });
@@ -63,11 +79,19 @@ export const pinDependencies = async (
 
   // pin dev dependencies
   if (packageJson.content.devDependencies) {
-    const devDependencies: Record<string, string> = Object.fromEntries(
-      Object.keys(packageJson.content.devDependencies).map((name) => [
-        name,
-        allDependencies[name],
-      ]),
+    const devDependencies: Record<string, string> = Object.entries(
+      packageJson.content.devDependencies,
+    ).reduce(
+      (acc, [name, prev]) => {
+        const pinned = allDependencies[name];
+        if (prev !== pinned) {
+          pinnedDependencies.push({ name, prev, pinned });
+        }
+
+        acc[name] = pinned;
+        return acc;
+      },
+      {} as Record<string, string>,
     );
 
     packageJson.update({ devDependencies });
@@ -75,6 +99,8 @@ export const pinDependencies = async (
 
   // save package.json
   await packageJson.save();
+
+  return pinnedDependencies;
 };
 
 export const runInstall = async (packageManager: PackageManager) => {

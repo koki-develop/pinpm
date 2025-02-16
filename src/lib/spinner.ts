@@ -18,7 +18,7 @@ export const withSpinner = async <T>(
   return fn()
     .then((result) => {
       process.stderr.write(
-        `\r${new Color("✓").green().bold()} ${message.start}\n`,
+        `\r${new Color("✓").green().bold()} ${new Color(message.start).bold()}\n`,
       );
       if (message.result) {
         const resultString = message.result(result);
@@ -38,7 +38,7 @@ export const withSpinner = async <T>(
     })
     .catch((error) => {
       process.stderr.write(
-        `\r${new Color("✗").red().bold()} ${message.start}\n`,
+        `\r${new Color("✗").red().bold()} ${new Color(message.start).bold()}\n`,
       );
       throw error;
     })
