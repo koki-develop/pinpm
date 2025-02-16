@@ -1,6 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { listBunDependencies } from "./lib/bun";
+import { Color } from "./lib/color";
 import { listNpmDependencies } from "./lib/npm";
 import {
   detectPackageManager,
@@ -9,7 +10,6 @@ import {
 } from "./lib/package-manager";
 import { listPnpmDependencies } from "./lib/pnpm";
 import { withSpinner } from "./lib/spinner";
-import { Color } from "./lib/color";
 
 export type Options = {
   lockfile?: string;
