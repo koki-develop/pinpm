@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/koki-develop/pinpm/compare/v0.3.2...v0.4.0) (2025-02-16)
+
+
+### Features
+
+* Enhance ui ([#13](https://github.com/koki-develop/pinpm/issues/13)) ([4eb195f](https://github.com/koki-develop/pinpm/commit/4eb195f9d2398ac255dad04721a72c57d6b3bf64))
+
 ## [0.3.2](https://github.com/koki-develop/pinpm/compare/v0.3.1...v0.3.2) (2025-02-15)
 
 
