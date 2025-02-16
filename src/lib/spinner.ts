@@ -3,7 +3,7 @@ const spinner = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", 
 export const withSpinner = async <T>(
   message: {
     start: string;
-    result?: (result: T) => string;
+    result?: (result: T) => string | string[];
   },
   fn: () => Promise<T>,
 ): Promise<T> => {
@@ -17,7 +17,18 @@ export const withSpinner = async <T>(
     .then((result) => {
       process.stderr.write(`\r\x1b[32m\x1b[1m✓\x1b[0m ${message.start}\n`);
       if (message.result) {
-        process.stderr.write(`  └─ ${message.result(result)}\n`);
+        const resultString = message.result(result);
+        if (Array.isArray(resultString)) {
+          resultString.forEach((line, i) => {
+            if (i === resultString.length - 1) {
+              process.stderr.write(`  └─ ${line}\n`);
+            } else {
+              process.stderr.write(`  ├─ ${line}\n`);
+            }
+          });
+        } else {
+          process.stderr.write(`  └─ ${resultString}\n`);
+        }
       }
       return result;
     })
