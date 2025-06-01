@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/koki-develop/pinpm/compare/v0.4.0...v0.4.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @npmcli/package-json to v6.2.0 ([#31](https://github.com/koki-develop/pinpm/issues/31)) ([08b6844](https://github.com/koki-develop/pinpm/commit/08b684484013672abd80677233968a553f0c494a))
+* **deps:** update dependency commander to v14 ([#32](https://github.com/koki-develop/pinpm/issues/32)) ([0efaafa](https://github.com/koki-develop/pinpm/commit/0efaafab4e5faa14553de592b2b1a2bc61fdb1cb))
+
 ## [0.4.0](https://github.com/koki-develop/pinpm/compare/v0.3.2...v0.4.0) (2025-02-16)
 
 
