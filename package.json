@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@types/bun": "1.2.15",
+    "@types/bun": "1.2.20",
     "@types/node": "24.0.10",
     "typescript": "5.8.3"
   }
