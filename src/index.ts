@@ -1,6 +1,6 @@
 import { Command } from "commander";
 import { description, name, version } from "../package.json";
-import { type Options, main } from "./main";
+import { main, type Options } from "./main";
 
 const program = new Command();
 
