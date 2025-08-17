@@ -28,5 +28,7 @@ jobs:
         with:
           claude-code-oauth-token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           allowed-tools: |
+            WebSearch
             WebFetch(domain:github.com)
             WebFetch(domain:raw.githubusercontent.com)
+            WebFetch(domain:devblogs.microsoft.com)
