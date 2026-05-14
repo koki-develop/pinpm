@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/koki-develop/pinpm/compare/v0.4.1...v0.4.2) (2026-05-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commander to v14.0.3 ([#52](https://github.com/koki-develop/pinpm/issues/52)) ([af3354f](https://github.com/koki-develop/pinpm/commit/af3354fc812f5fe61abd8023538fd066a591f8cd))
+
 ## [0.4.1](https://github.com/koki-develop/pinpm/compare/v0.4.0...v0.4.1) (2025-06-01)
 
 
